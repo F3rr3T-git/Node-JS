@@ -1,28 +1,21 @@
-const http = require('http');
 const express = require('express');
 const bodyParser = require('body-parser');
+const path = require('path');
 
 const app = express();
 
+const adminRoutes = require('./Routes/Admin');
+const shopRoutes = require('./Routes/Shop');
+
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'Public')));
 
-app.use('/add-product', (req, res, next) =>{
+app.use('/Admin', adminRoutes);
+app.use(shopRoutes);
 
-res.send('<form action="/product" method="POST"><input type="text" name="title"><button typer="submit">Send</button></form>');
+app.use((req, res, next) =>{
 
+   res.status(404).sendFile(path.join(__dirname, 'Views', '404.html'));
 });
 
-app.post('/product', (req, res, next) =>{
-
-   console.log(req.body);
-   res.redirect('/');
-
-});
-
-app.use('/', (req, res, next) =>{
-
-   res.send('<h1> Inside the Home Page </h1>');
-
-});
-
-app.listen(3000);
+app.listen(4000);
