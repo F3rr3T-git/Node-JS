@@ -7,13 +7,13 @@ const app = express();
 app.set('view engine', 'pug');
 app.set('views','Views');
 
-const adminRoutes = require('./Routes/Admin');
+const adminData = require('./Routes/Admin');
 const shopRoutes = require('./Routes/Shop');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'Public')));
 
-app.use('/Admin', adminRoutes);
+app.use('/Admin', adminData.routes);
 app.use(shopRoutes);
 
 app.use((req, res, next) =>{
