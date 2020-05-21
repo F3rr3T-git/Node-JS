@@ -6,7 +6,7 @@ const products = [];
 
 router.get('/add-product', (req, res, next) =>{
 
-    res.sendFile(path.join(__dirname, '../', 'Views', 'Add-Product.html'));
+    res.render('Add-Product', {pageTitle:'Add Product', path: '/Admin/add-product'});
     });
 
     
