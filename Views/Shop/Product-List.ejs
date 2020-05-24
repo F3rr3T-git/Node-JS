@@ -22,7 +22,7 @@
                         <p class="product__description"><%= i.description %></p>
                     </div>
                     <div class="card__actions">
-                        <a href="/" class="btn">Details</a>
+                        <a href="/products/<%= i.id %>" class="btn">Details</a>
                         <form action="/add-to-cart" method="POST"><button class="btn">Add to Cart</button></form>
                     </div>
                 </article>
