@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use((req, res, next) => {
     User.findById("5ed3e2f34dfe9b312b1ba9bb")
     .then(user => {
-        req.user = user;
+        req.user = new User(user.name, user.email, user.cart, user._id) ;
         next();
     })
     .catch(err => {
@@ -35,6 +35,6 @@ app.use(errorController.get404);
 
 mongoConnect(() => {
     
-    app.listen(9000);
+    app.listen(8000);
 });
 
