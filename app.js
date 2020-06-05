@@ -53,23 +53,9 @@ app.use((req, res, next) => {
  app.use(authRoutes);
 
 app.use(errorController.get404);
+
 mongoose.connect(MONGODB_URI)
 .then(result => {
-   
-    User.findOne('5ed6372c778a87201405e1cf')
-    .then(user => {
-        if(!user){
-            const user = new User({
-                name: 'Max',
-                email: 'max@test.com',
-                cart: {
-                    items: []
-                }
-            });
-            user.save();
-        }
-    });
-    
     app.listen(9000);
 })
 .catch(err => {
